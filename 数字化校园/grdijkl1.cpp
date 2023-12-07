@@ -9,7 +9,6 @@
 // Use any of the files in this directory with a .gph extension.
 // This version is for the Adjancency List representation
 
-#include "book.h"
 #include <fstream>
 #include "grlist.h"
 #include <iostream>

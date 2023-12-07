@@ -91,10 +91,11 @@ int minVertex(Graph* G, int* D) { // Find min cost vertex
 
 // Compute shortest path distances from "s".
 // Return these distances in "D".
-void Dijkstra(Graph* G, int* D, int s) {
+void Dijkstra(Graph* G, int* D,vector<int> P, int s) {
     int i, v, w;
     for (i=0; i<G->n(); i++) {      // Process the vertices
         v = minVertex(G, D);
+        P.push_back(v);
         if (D[v] == INFINITY) return; // Unreachable vertices
         G->setMark(v, VISITED);
         for (w=G->first(v); w<G->n(); w = G->next(v,w))
@@ -142,17 +143,27 @@ int main(int argc, char** argv)
 
         }else if(input == 2){
             int D[G->n()];
+            vector<int> P;
             for (int i=0; i<G->n(); i++)     // Initialize
                 D[i] = INFINITY;
             D[0] = 0;
+            string name1,name2;
+
+            cout << "请输入起点：" << endl;
+            cin >> name1;
+
+            cout << "请输入终点：" << endl;
+            cin >> name2;
 
             int id1,id2;
-            cout << "你要查询的两个地点（序号）" ;
-            cin  >> id1 >> id2;
-            D[id1] = 0;
-            Dijkstra(G, D, 0);
-            cout << D[id2] << endl;
+            id1 = name_id[name1],id2 = name_id[name2];
 
+            D[id1] = 0;
+            Dijkstra(G, D, P,0);
+            cout << "最短路径:";
+            cout << D[id2] << endl;
+            cout << "所有路径:";
+            for(int i = 0;i < P.size();i ++) cout << id_name[P[i]] << ' ';
         }else if(input == 3){
             break;
         }
