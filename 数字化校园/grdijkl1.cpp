@@ -18,7 +18,10 @@
 #include <sstream>
 #include <string>
 
+
 int minVertex(Graph*, int*);
+
+
 
 // Compute shortest path distances from "s".
 // Return these distances in "D".
@@ -44,25 +47,16 @@ int minVertex(Graph* G, int* D) { // Find min cost vertex
       v = i;
   return v;
 }
-
-Graphl createGraph(FILE *fid){
-    char line[100];
-    while (fgets(line, 100, fid) != NULL) { // 逐行读取文件
-        char* token;
-        char* rest = line;
-        char* tokens[100]; // 存储当前行的所有单词
-        int i = 0;
-        while ((token = strtok(rest, " ")) != NULL) { // 将当前行按空格分割成单词
-            tokens[i++] = token;
-        }
-        // 处理当前行的单词
-        for (int j = 0; j < i; j++) {
-            printf("%s ", tokens[j]);
-        }
-        printf("\n");
+template<typename Graphl>
+Graphl* createGraph(FILE* fid){
+    int numVertex, numEdge;
+    fscanf(fid, "%d %d", &numVertex, &numEdge);
+    Graphl* G = new Graphl(numVertex);
+    int u, v, w;
+    while (fscanf(fid, "%d %d %d", &u, &v, &w) == 3) {
+        G->setEdge(u, v, w);
     }
-
-
+    return G;
 }
 
 // Test Dijkstra's algorithm:
@@ -82,6 +76,7 @@ int main(int argc, char** argv) {
   }
 
   G = createGraph<Graphl>(fid);
+
   if (G == NULL) {
     cout << "Unable to create graph\n";
     exit(-1);
@@ -99,3 +94,5 @@ int main(int argc, char** argv) {
   cout << endl;
   return 0;
 }
+
+
