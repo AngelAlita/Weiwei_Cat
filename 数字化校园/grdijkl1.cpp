@@ -45,21 +45,6 @@ int minVertex(Graph* G, int* D) { // Find min cost vertex
   return v;
 }
 
-Graphl createGraph(FILE *fid){
-    char line[100];
-    while (fgets(line, 100, fid) != NULL) { // 逐行读取文件
-        char* token;
-        char* rest = line;
-        char* tokens[100]; // 存储当前行的所有单词
-        int i = 0;
-        while ((token = strtok(rest, " ")) != NULL) { // 将当前行按空格分割成单词
-            tokens[i++] = token;
-        }
-        string a,b,c;
-    }
-
-
-}
 
 // Test Dijkstra's algorithm:
 // Version for Adjancency List representation
