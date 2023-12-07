@@ -31,6 +31,7 @@ Graphl* createGraph(FILE* fid){
     int u, v, w;
     while (fscanf(fid, "%d %d %d", &u, &v, &w) == 3) {
         G->setEdge(u, v, w);
+        cout << u <<' '<< v <<' '<< w<< endl;
     }
     return G;
 }
@@ -108,11 +109,11 @@ void Dijkstra(Graph* G, int* D, int s) {
 
 void printPath(int* pre, int v) {
     if (pre[v] == -1) {
-        printf("%d", v);
+        cout << id_name[v+1] ;
         return;
     }
     printPath(pre, pre[v]); // Recursively print the path
-    printf(" -> %d", v);  // Then print the current vertex
+    cout <<  "->" <<id_name[v+1];  // Then print the current vertex
 }
 
 int main(int argc, char** argv)
