@@ -8,7 +8,8 @@
 
 #include <stdio.h>
 #include <ctype.h>
-
+#include <mapidbg.h>
+#include<cassert>
 // Used by the mark array
 #define UNVISITED 0
 #define VISITED 1
@@ -85,8 +86,8 @@ public:
   }
   // Set edge (i, j) to "weight"
   void setEdge(int i, int j, int weight) {
-    Assert(weight>0, "May not set weight to 0");
-    Edge currEdge(j, weight);
+    assert(weight>0 && "May not set weight to 0");
+      Edge currEdge(j, weight);
     if (isEdge(i, j)) { // Edge already exists in graph
       vertex[i]->remove();
       vertex[i]->insert(currEdge);
@@ -134,4 +135,3 @@ public:
   void setMark(int v, int val) { mark[v] = val; }
 };
 
-#include "graphutil.cpp"

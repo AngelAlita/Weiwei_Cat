@@ -55,11 +55,7 @@ Graphl createGraph(FILE *fid){
         while ((token = strtok(rest, " ")) != NULL) { // 将当前行按空格分割成单词
             tokens[i++] = token;
         }
-        // 处理当前行的单词
-        for (int j = 0; j < i; j++) {
-            printf("%s ", tokens[j]);
-        }
-        printf("\n");
+        string a,b,c;
     }
 
 
@@ -82,6 +78,7 @@ int main(int argc, char** argv) {
   }
 
   G = createGraph<Graphl>(fid);
+
   if (G == NULL) {
     cout << "Unable to create graph\n";
     exit(-1);
