@@ -10,8 +10,13 @@
 // This version is for the Adjancency List representation
 
 #include "book.h"
-
+#include <fstream>
 #include "grlist.h"
+#include <iostream>
+#include<cstdio>
+#include <fstream>
+#include <sstream>
+#include <string>
 
 int minVertex(Graph*, int*);
 
@@ -38,6 +43,26 @@ int minVertex(Graph* G, int* D) { // Find min cost vertex
     if ((G->getMark(i) == UNVISITED) && (D[i] < D[v]))
       v = i;
   return v;
+}
+
+Graphl createGraph(FILE *fid){
+    char line[100];
+    while (fgets(line, 100, fid) != NULL) { // 逐行读取文件
+        char* token;
+        char* rest = line;
+        char* tokens[100]; // 存储当前行的所有单词
+        int i = 0;
+        while ((token = strtok(rest, " ")) != NULL) { // 将当前行按空格分割成单词
+            tokens[i++] = token;
+        }
+        // 处理当前行的单词
+        for (int j = 0; j < i; j++) {
+            printf("%s ", tokens[j]);
+        }
+        printf("\n");
+    }
+
+
 }
 
 // Test Dijkstra's algorithm:
