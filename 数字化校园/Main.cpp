@@ -31,7 +31,7 @@ Graphl* createGraph(FILE* fid){
     int u, v, w;
     while (fscanf(fid, "%d %d %d", &u, &v, &w) == 3) {
         G->setEdge(u, v, w);
-        cout << u <<' '<< v <<' '<< w<< endl;
+        G->setEdge(v, u, w);
     }
     return G;
 }
@@ -95,6 +95,7 @@ int minVertex(Graph* G, int* D) { // Find min cost vertex
 // Return these distances in "D".
 void Dijkstra(Graph* G, int* D, int s) {
     int i, v, w;
+    D[s] = 0;
     for (i=0; i<G->n(); i++) {      // Process the vertices
         v = minVertex(G, D);
         if (D[v] == INFINITY) return; // Unreachable vertices
@@ -137,7 +138,7 @@ int main(int argc, char** argv)
         exit(-1);
     }
 
-
+    int D[G->n()];
     while(true){
         menu();
         int input;
@@ -153,17 +154,17 @@ int main(int argc, char** argv)
             description(name_id[place_name]);
 
         }else if(input == 2){
-            int D[G->n()];
+
             for (int i=0; i<G->n(); i++) {// Initialize
-                D[i] = 0x3f3f3f3f;
+                D[i] = INFINITY;
+                G->setMark(i,UNVISITED);
                 pre[i] = -1;
             }
 
             int id1,id2;
             cout << "你要查询的两个地点（序号）" ;
             cin  >> id1 >> id2;
-            D[id1 - 1] = 0;
-            Dijkstra(G, D, 0);
+            Dijkstra(G, D, id1 - 1);
             cout << D[id2 -1 ] << endl;
             printPath(pre,id2-1);
             cout << endl;
