@@ -85,7 +85,7 @@ public:
   }
   // Set edge (i, j) to "weight"
   void setEdge(int i, int j, int weight) {
-    Assert(weight>0, "May not set weight to 0");
+    //Assert(weight>0, "May not set weight to 0");
     Edge currEdge(j, weight);
     if (isEdge(i, j)) { // Edge already exists in graph
       vertex[i]->remove();
@@ -132,6 +132,9 @@ public:
 
   int getMark(int v) { return mark[v]; }
   void setMark(int v, int val) { mark[v] = val; }
+
+
+
 };
 
-#include "graphutil.cpp"
+//#include "graphutil.cpp"
